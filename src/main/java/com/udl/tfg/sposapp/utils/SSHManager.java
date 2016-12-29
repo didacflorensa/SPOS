@@ -95,7 +95,8 @@ public class SSHManager {
             ChannelExec channelExec = (ChannelExec) getChannel(session, "exec");
             System.out.println("Running command: " + command);
             BufferedReader in = new BufferedReader(new InputStreamReader(channelExec.getInputStream()));
-            channelExec.setCommand(". ~/.bashrc && " + command);
+            //channelExec.setCommand(". ~/.bashrc && " + command);
+            channelExec.setCommand(command);
             channelExec.setErrStream(System.err);
             channelExec.connect();
 
