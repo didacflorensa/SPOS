@@ -12,7 +12,7 @@ import java.util.Properties;
 public class SSHManager {
 
     @Value("${sshIdentityFile}")    private String sshIdentityFile;
-    @Value("${sshIdentityPass}")    private String sshIdentityPass;
+    //@Value("${sshIdentityPass}")    private String sshIdentityPass;
     @Value("${sshKnownHostsFile}")  private String sshKnownHostsFile;
     @Value("${localStorageFolder}") private String localStorageFolder;
     @Value("${sshStorageFolder}")   private String sshStorageFolder;
@@ -24,8 +24,8 @@ public class SSHManager {
             throw new IllegalStateException("SSHUtils has been already initialized");
 
         jSch = new JSch();
-        jSch.addIdentity(sshIdentityFile, sshIdentityPass);
-        //jSch.addIdentity(sshIdentityFile);
+        //jSch.addIdentity(sshIdentityFile, sshIdentityPass);
+        jSch.addIdentity(sshIdentityFile);
         jSch.setKnownHosts(sshKnownHostsFile);
         System.out.println("JSCH Initialized");
     }
