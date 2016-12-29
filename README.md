@@ -5,7 +5,7 @@ Client-Server WebApp for solving numerical optimization models in a private clou
 * Kevin Borell <kborrells@gmail.com>
 * Jordi Mateo <jmateo@diei.udl.cat>
 
-This web app was coded at the [University of Lleida] (http://www.eps.udl.cat) by the [GCD Research Group] (http://www.gcd.udl.cat).
+This web app was coded at the [University of Lleida] (http://www.eps.udl.cat) by the [GCD Research Group] (http://gcd.udl.cat).
 
 ### How to generate the WAR.
 
