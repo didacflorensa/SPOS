@@ -7,6 +7,8 @@
  * # factories
  * Service in the sposApp.
  */
+
+
 angular.module('sposApp')
     .factory('ModelInfo', ['$resource', function($resource) {
       return $resource('http://193.144.12.55/models/:action/:search/:id', null,

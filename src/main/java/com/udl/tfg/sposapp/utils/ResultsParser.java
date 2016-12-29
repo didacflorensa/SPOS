@@ -28,13 +28,13 @@ public class ResultsParser {
         if (!results.equals("")) {
             Result executionResults = new Result();
             switch (session.getInfo().getMethod().getMethod()) {
-                case CPLEX:
+                case glpk:
                     parseCplex(session, results, executionResults);
                     break;
-                case Gurobi:
+                case cbc:
                     parseGurobi(results, executionResults);
                     break;
-                case Lpsolve:
+                case lpsolve:
                     parseLpsolve(results, executionResults);
                     break;
                 default:

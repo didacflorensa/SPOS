@@ -1,6 +1,7 @@
 package com.udl.tfg.sposapp.utils;
 
 import com.udl.tfg.sposapp.models.VirtualMachine;
+import com.udl.tfg.sposapp.repositories.ParametersRepository;
 import com.udl.tfg.sposapp.repositories.VirtualMachineRepository;
 import org.opennebula.client.Client;
 import org.opennebula.client.ClientConfigurationException;
@@ -10,6 +11,7 @@ import org.opennebula.client.vm.VirtualMachinePool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 
 import java.net.InetAddress;
 
@@ -23,9 +25,9 @@ public class OCAManager {
         HIGH
     }
 
-    private final String LOW_VM_IP = "192.168.101.75";
-    private final String MEDIUM_VM_IP = "192.168.101.75";
-    private final String HIGH_VM_IP = "192.168.101.75";
+    @Value("${low}") private String LOW_VM_IP;
+    @Value("${medium}") private String MEDIUM_VM_IP;
+    @Value("${high}") private String HIGH_VM_IP;
 
     @Value("${openNebulaUser}") private String user;
     @Value("${openNebulaPass}") private String pass;
@@ -38,7 +40,8 @@ public class OCAManager {
     VirtualMachinePool vmPool;
 
     public void Initialize(){
-        try {
+
+        try{
             System.out.println("OCA Manager created");
             client = new Client(user + ":" + pass, entryPoint);
             vmPool = new VirtualMachinePool(client);

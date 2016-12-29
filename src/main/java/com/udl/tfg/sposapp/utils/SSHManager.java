@@ -25,6 +25,7 @@ public class SSHManager {
 
         jSch = new JSch();
         jSch.addIdentity(sshIdentityFile, sshIdentityPass);
+        //jSch.addIdentity(sshIdentityFile);
         jSch.setKnownHosts(sshKnownHostsFile);
         System.out.println("JSCH Initialized");
     }

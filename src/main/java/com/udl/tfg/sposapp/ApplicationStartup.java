@@ -91,52 +91,33 @@ public class ApplicationStartup implements ApplicationListener<ContextRefreshedE
     }
 
     private void PopulateDB() {
+
+        System.out.println("Start populateDB");
+
         CreateVmConfig(1, 1024, 0.5f);
         CreateVmConfig(4, 1024, 1f);
         CreateVmConfig(8, 4096, 2f);
 
-        CreateMethods(MethodCodes.CPLEX, "General Solver", true, true, true, false, false);
-        CreateMethods(MethodCodes.BD, "Benders Decompositions", false, false, true, false, false);
-        CreateMethods(MethodCodes.pBD, "Parallel Benders Decomposition", false, false, true, true, false);
-        CreateMethods(MethodCodes.CBD, "Cluster Benders Decomposition", false, false, true, false, true);
-        CreateMethods(MethodCodes.pCBD, "Parallel Cluster Benders Decomposition", false, false, true, true, true);
-        CreateMethods(MethodCodes.pBDc, "Parallel Benders Decomposition with Clusters", false, false, true, true, false);
-        CreateMethods(MethodCodes.LD, "Lagrange Decomposition", false, false, true, false, false);
-        CreateMethods(MethodCodes.pLD, "Parallel Lagrange Decomposition", false, false, true, true, false);
-        CreateMethods(MethodCodes.Gurobi, "Gurobi Solver", true, true, false, false, false);
-        CreateMethods(MethodCodes.Lpsolve, "Lpsolve Solver", true, true, false, false, false);
+        CreateMethods(MethodCodes.lpsolve, "lpsolve", true, true, false, false,false, false);
+        CreateMethods(MethodCodes.glpk, "glpk", true, true, true, false, false, false);
+        CreateMethods(MethodCodes.cbc, "cbc",true, true, true, false,false,false);
+        CreateMethods(MethodCodes.dip, "dip",false, false, false,true,false, false);
+        CreateMethods(MethodCodes.symphony, "symphony", true, true, false, false,false, false);
+        CreateMethods(MethodCodes.clp, "clp", true, true, false, false, false,false);
 
-        CreateModels(ModelCodes.GDS2SP, "General Discrete S2SP", new ArrayList<>(
-                Arrays.asList(
-                        methods.get(MethodCodes.CPLEX),
-                        methods.get(MethodCodes.BD),
-                        methods.get(MethodCodes.pBD),
-                        methods.get(MethodCodes.CBD),
-                        methods.get(MethodCodes.pCBD)
-                )
-        ));
-        CreateModels(ModelCodes.SFLP, "Stochastic Facility Location Problem", new ArrayList<>(
-                Arrays.asList(
-                        methods.get(MethodCodes.CPLEX),
-                        methods.get(MethodCodes.pBDc),
-                        methods.get(MethodCodes.LD),
-                        methods.get(MethodCodes.pLD)
-                )
-        ));
-        CreateModels(ModelCodes.GM01S2SP, "General Mixed 0-1 S2SP", new ArrayList<>(
-                Arrays.asList(
-                        methods.get(MethodCodes.CPLEX),
-                        methods.get(MethodCodes.LD),
-                        methods.get(MethodCodes.pLD)
-                )
-        ));
+
         CreateModels(ModelCodes.Determinist, "Determinist model", new ArrayList<>(
                 Arrays.asList(
-                        methods.get(MethodCodes.CPLEX),
-                        methods.get(MethodCodes.Gurobi),
-                        methods.get(MethodCodes.Lpsolve)
+                        methods.get(MethodCodes.glpk),
+                        methods.get(MethodCodes.cbc),
+                        methods.get(MethodCodes.lpsolve),
+                        methods.get(MethodCodes.clp),
+                        methods.get(MethodCodes.dip),
+                        methods.get(MethodCodes.symphony)
                 )
         ));
+
+        System.out.println("End populateDB");
     }
 
     private void CreateVmConfig(int virtualCPUs, int ram, float realCPUs) {
@@ -156,13 +137,14 @@ public class ApplicationStartup implements ApplicationListener<ContextRefreshedE
     }
 
     private void CreateMethods(MethodCodes method, String name, boolean mpsSupport, boolean lpSupport,
-                               boolean datSupport, boolean parallelizationSupport, boolean clusterSupport) {
+                               boolean pyomoSupport, boolean decompostionSupport, boolean parallelizationSupport, boolean clusterSupport) {
         MethodInfo mi = new MethodInfo();
         mi.setMethod(method);
         mi.setName(name);
         mi.setMpsSupport(mpsSupport);
         mi.setLpSupport(lpSupport);
-        mi.setDatSupport(datSupport);
+        mi.setPyomotSupport(pyomoSupport);
+        mi.setDecompositionSupport(decompostionSupport);
         mi.setParallelizationSupport(parallelizationSupport);
         mi.setClusterSupport(clusterSupport);
         methodInfoRepository.save(mi);

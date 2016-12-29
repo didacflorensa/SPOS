@@ -1,5 +1,8 @@
 package com.udl.tfg.sposapp;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+
+
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +11,12 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableEncryptableProperties
 public class SposAppApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SposAppApplication.class, args);
+
     }
 
     @Bean
@@ -26,4 +31,6 @@ public class SposAppApplication {
         };
 
     }
+
+
 }

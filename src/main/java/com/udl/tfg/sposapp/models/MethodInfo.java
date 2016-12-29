@@ -23,7 +23,10 @@ public class MethodInfo {
     private boolean lpSupport;
 
     @NotNull(message = "This field cannot be empty")
-    private boolean datSupport;
+    private boolean pyomoSupport;
+
+    @NotNull(message = "This field cannot be empty")
+    private boolean decompositionSupport;
 
     @NotNull(message = "This field cannot be empty")
     private boolean parallelizationSupport;
@@ -71,12 +74,20 @@ public class MethodInfo {
         this.lpSupport = lpSupport;
     }
 
-    public boolean isDatSupport() {
-        return datSupport;
+    public boolean isDecompositionSupport() {
+        return decompositionSupport;
     }
 
-    public void setDatSupport(boolean datSupport) {
-        this.datSupport = datSupport;
+    public void setDecompositionSupport(boolean decompositionSupport) {
+        this.decompositionSupport = decompositionSupport;
+    }
+
+    public boolean isPyomoSupport() {
+        return pyomoSupport;
+    }
+
+    public void setPyomotSupport(boolean pyomoSupport) {
+        this.pyomoSupport = pyomoSupport;
     }
 
     public boolean isParallelizationSupport() {

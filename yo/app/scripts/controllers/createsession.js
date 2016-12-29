@@ -133,6 +133,7 @@ angular.module('sposApp')
 
     var createVMConfig = function () {
       if ($scope.predefinedVM === "") {
+
         $http.post('http://193.144.12.55/virtualmachine', $scope.vmConfig)
           .success(function (data, status, headers, config) {
             VirtualMachine.get({id: headers('Location').split('/').pop()}).$promise.then(function (vm) {
@@ -185,16 +186,22 @@ angular.module('sposApp')
       $('#input-lp').fileinput('reset');
       $('#input-dat').fileinput('reset');
       $('#input-mod').fileinput('reset');
+      $('#input-problem').fileinput('reset');
+      $('#input-block').fileinput('reset');
 
       $('#input-mps').fileinput('enable');
       $('#input-lp').fileinput('enable');
       $('#input-dat').fileinput('enable');
       $('#input-mod').fileinput('enable');
+      $('#input-problem').fileinput('enable');
+      $('#input-block').fileinput('enable');
 
       $('#input-mps').fileinput('clear');
       $('#input-lp').fileinput('clear');
       $('#input-dat').fileinput('clear');
       $('#input-mod').fileinput('clear');
+      $('#input-problem').fileinput('clear');
+      $('#input-block').fileinput('clear');
     }
 
     $scope.validateFiles = function () {
